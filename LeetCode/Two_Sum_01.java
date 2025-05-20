@@ -27,7 +27,7 @@ package LeetCode;
 public class Two_Sum_01 {
     public static void main(String args [])
     {
-        System.out.println("Sonali");
-    }
+        System.out.println("swara");
+    } 
     
 }
