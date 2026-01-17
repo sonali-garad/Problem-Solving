@@ -1,3 +1,5 @@
+//LEETCODE 26: REMOVE DUPLICATES FROM SORTED ARRAY
+
 // Given an integer array nums sorted in non-decreasing order, remove the duplicates in-place such that each unique element appears only once. The relative order of the elements should be kept the same.
 
 // Consider the number of unique elements in nums to be k​​​​​​​​​​​​​​. After removing duplicates, return the number of unique elements k.
@@ -19,8 +21,6 @@
 // }
 // If all assertions pass, then your solution will be accepted.
 
- 
-
 // Example 1:
 
 // Input: nums = [1,1,2]
@@ -28,7 +28,29 @@
 // Explanation: Your function should return k = 2, with the first two elements of nums being 1 and 2 respectively.
 // It does not matter what you leave beyond the returned k (hence they are underscores).
 
+import java.util.*;
 
 public class Leetcode_26_Remove_Duplicates {
-    
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int nums[] = new int[n];
+        for (int i = 0; i < n; i++) {
+            nums[i] = sc.nextInt();
+        }
+        // System.out.println(Arrays.toString(nums));
+        int res = removeDuplicates(nums);
+        System.out.println("Unique ele: " + res);
+    }
+
+    public static int removeDuplicates(int nums[]) {
+        int i = 0;
+        for (int j = 1; j < nums.length; j++) {
+            if (nums[i] != nums[j]) {
+                i++;
+                nums[i] = nums[j]; // replacing array unique ele in place
+            }
+        }
+        return i + 1;
+    }
 }
