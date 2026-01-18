@@ -58,21 +58,42 @@ public class Leetcode_1624_Largest_Substring_between_Two_Equal_Char {
         // return -1;
 
         //Optimization - Time:o(n), space: o(n)
-        HashMap<Character, Integer> map = new HashMap<>();
-        int max = -1 ;
-        for(int i = 0 ; i <s.length(); i++)
-        {
-            char c = s.charAt(i);
-            if(!map.containsKey(c))
-            {
-                map.put(c, i);
-            }
-            //aabcefhfa
-            else 
-            {
-                max = Math.max(max,i-map.get(c)-1 );
-            }
+        // HashMap<Character, Integer> map = new HashMap<>();
+        // int max = -1 ;
+        // for(int i = 0 ; i <s.length(); i++)
+        // {
+        //     char c = s.charAt(i);
+        //     if(!map.containsKey(c))
+        //     {
+        //         map.put(c, i);
+        //     }
+        //     //aabcefhfa
+        //     else 
+        //     {
+        //         max = Math.max(max,i-map.get(c)-1 );
+        //     }
 
+        // }
+        // return max;
+
+        //Optimization Again : Time: o(n), space : o(1)
+        int arr[] = new int[26];
+        Arrays.fill(arr, -1);
+        int max= -1;
+        for(int i= 0 ; i<s.length(); i++)
+        {
+            char c= s.charAt(i);
+            int index = c-'a';
+            //acdca
+            if(arr[index] == -1)
+            {
+                arr[index] = i;
+            }
+            else
+        //it means it has been allready marked - so now will calculate here distance from right to left index 
+            {
+                max = Math.max(max, i-arr[index]-1);
+            }
         }
         return max;
 
