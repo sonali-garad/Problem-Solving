@@ -37,23 +37,44 @@ public class Leetcode_1624_Largest_Substring_between_Two_Equal_Char {
 
     }
 
-    public static int CountLongestSubstring(String s) {
-        int count = 0;
-        boolean flag = false;
-        for (int i = 0; i < s.length(); i++) {
-            char comp = s.charAt(i);
-            for (int j = i + 1; j < s.length(); j++) {
-                if (s.charAt(j) == comp) {
-                    count = Math.max(count, j - i - 1);
-                    flag = true;
-                }
+    public static int CountLongestSubstring(String s) { 
+        //Brute Force - O(n^2)
+        // int count = 0;
+        // boolean flag = false;
+        // for (int i = 0; i < s.length(); i++) {
+        //     char comp = s.charAt(i);
+        //     for (int j = i + 1; j < s.length(); j++) {
+        //         if (s.charAt(j) == comp) {
+        //             count = Math.max(count, j - i - 1);
+        //             flag = true;
+        //         }
 
+        //     }
+        // }
+        // if (flag) {
+        //     return count;
+        // }
+
+        // return -1;
+
+        //Optimization - Time:o(n), space: o(n)
+        HashMap<Character, Integer> map = new HashMap<>();
+        int max = -1 ;
+        for(int i = 0 ; i <s.length(); i++)
+        {
+            char c = s.charAt(i);
+            if(!map.containsKey(c))
+            {
+                map.put(c, i);
             }
-        }
-        if (flag) {
-            return count;
-        }
+            //aabcefhfa
+            else 
+            {
+                max = Math.max(max,i-map.get(c)-1 );
+            }
 
-        return -1;
+        }
+        return max;
+
     }
 }
