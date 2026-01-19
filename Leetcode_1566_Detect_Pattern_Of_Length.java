@@ -42,6 +42,19 @@ public class Leetcode_1566_Detect_Pattern_Of_Length {
     }
 
     public static boolean Solution(int arr[], int m, int k) {
+
+        int count = 0;
+        for (int i = 0; i + m < arr.length; i++) {
+            if (arr[i] == arr[i + m]) {
+                count++;
+                if (count == (k - 1) * m) {
+                    return true;
+                }
+            } else {
+                count = 0;
+            }
+        }
+
         return false;
     }
 }
