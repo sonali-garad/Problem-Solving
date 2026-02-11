@@ -25,8 +25,28 @@
 // Output: 0
 // Explanation: There are no 'X's in s to convert.
 
+import java.util.*;
 public class Leetcode_2027_Minimum_moves_to_convet_String {
     public static void main(String args[]) {
 
+        Scanner sc = new Scanner(System.in);
+        String s = sc.nextLine();
+        int res = Solution(s);
+        System.out.println(res);
+
+    }
+    public static int  Solution(String s )
+    {
+        int move = 0 ;
+        for(int i =0 ; i<s.length(); i++)
+        {
+            char c = s.charAt(i);
+            if( c =='x')
+            {
+                move++;
+                i += 2;
+            }
+        }
+        return move;
     }
 }
