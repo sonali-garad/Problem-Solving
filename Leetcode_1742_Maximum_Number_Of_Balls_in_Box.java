@@ -33,9 +33,36 @@
 // Constraints:
 
 // 1 <= lowLimit <= highLimit <= 105
+import java.util.*;;
 
 public class Leetcode_1742_Maximum_Number_Of_Balls_in_Box {
 
     public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        int lowerLimit = sc.nextInt();
+        int higherLimit = sc.nextInt();
+        int res = Solution(higherLimit, lowerLimit);
+        System.out.println(res);
+
+    }
+
+    // lo = 1 , ho - 10 = op=2
+    public static int Solution(int higherLimit, int lowerLimit) {
+        int max = 0;
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int i = lowerLimit; i <= higherLimit; i++) {
+
+            int sum = 0;
+            int num = i;
+            while (num > 0) {
+                sum = sum + num % 10;
+                num /= 10;
+
+            }
+            map.put(sum, map.getOrDefault(sum, 0) + 1);
+            max = Math.max(max, map.get(sum));
+
+        }
+        return max;
     }
 }
