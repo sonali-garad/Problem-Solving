@@ -24,6 +24,35 @@
 // For queries[0]: All servers get at least one request in the duration of [1, 3].
 // For queries[1]: Only server with id 3 gets no request in the duration [2,4].
 
-public class Leetcode_2747_Count_Zero_Request_Servers {
+import java.util.*;
 
+public class Leetcode_2747_Count_Zero_Request_Servers {
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Number of rows for logs array: ");
+        int n = sc.nextInt();
+        int logs[][] = new int[3][2];
+        // int x = sc.nextInt()
+        int queries[] = new int[2];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < 2; j++)
+
+            {
+                logs[i][j] = sc.nextInt();
+            }
+        }
+
+        System.out.print("Now enter values for queries array: ");
+        for (int i = 0; i < 2; i++) {
+            queries[i] = sc.nextInt();
+        }
+
+        // int res[] = countServers(20);
+
+    }
+
+    public static int[] countServers(int n, int[][] logs, int x, int[] queries) {
+        System.out.println("fun called");
+        return new int[0];
+    }
 }
