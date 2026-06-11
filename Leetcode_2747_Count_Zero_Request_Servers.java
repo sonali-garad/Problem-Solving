@@ -29,30 +29,57 @@ import java.util.*;
 public class Leetcode_2747_Count_Zero_Request_Servers {
     public static void main(String args[]) {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Number of rows for logs array: ");
+        System.out.print("Number of servers : ");
         int n = sc.nextInt();
-        int logs[][] = new int[3][2];
-        // int x = sc.nextInt()
+        System.out.println("Enter number of rows for logs array :");
+        int rows = sc.nextInt();
+        int logs[][] = new int[rows][2];
+        System.out.print("Enter value of X :");
+        int x = sc.nextInt();
         int queries[] = new int[2];
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < rows; i++) {
             for (int j = 0; j < 2; j++)
 
             {
                 logs[i][j] = sc.nextInt();
             }
         }
-
+        System.out.println("logs len " + logs.length);
         System.out.print("Now enter values for queries array: ");
         for (int i = 0; i < 2; i++) {
             queries[i] = sc.nextInt();
         }
 
-        // int res[] = countServers(20);
+        int res[] = countServers(n, logs, x, queries);
+
+        System.out.println("res - " + Arrays.toString(res));
 
     }
 
+    // n = 3, logs = [[2,4],[2,1],[1,2],[3,1]], x = 2, queries = [3,4]
+    // Output: [0,1]
     public static int[] countServers(int n, int[][] logs, int x, int[] queries) {
         System.out.println("fun called");
-        return new int[0];
+        int res[] = new int[2];
+        for (int i = 0; i < 2; i++) {
+
+            int startTime = queries[i] - x; // 6
+            int endTime = queries[i]; // 11
+            HashSet<Integer> activeServers = new HashSet<>();
+
+            for (int j = 0; j < logs.length; j++) {
+                // logs = 1 3 2 6 1 5 || queries = 10 11 || x = 5
+                int serverId = logs[j][0];
+                int timeStamp = logs[j][1]; // 3
+                // System.out.println("here we go " + timeStamp > startTime);
+                if (timeStamp >= startTime && timeStamp <= endTime) {
+                    activeServers.add(serverId);
+                }
+                System.out.println("activeServers " + activeServers);
+            }
+            res[i] = n - activeServers.size();
+        }
+
+        return res;
     }
 }
