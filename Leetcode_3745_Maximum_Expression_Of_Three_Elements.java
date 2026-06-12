@@ -32,4 +32,42 @@
 // Constraints:
 
 // 3 <= nums.length <= 100
-// -100 <= nums[i] <= 100
+// -100 <= nums[i] <= 100n
+import java.util.*;
+
+public class Leetcode_3745_Maximum_Expression_Of_Three_Elements {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter how many numbers do u want in array - ");
+        int n = sc.nextInt();
+        int nums[] = new int[n];
+        for (int i = 0; i < n; i++) {
+            nums[i] = sc.nextInt();
+        }
+        int res = solution(nums);
+
+        System.out.println("output : " + res);
+    }
+
+    public static int solution(int nums[]) {
+        int max = Integer.MIN_VALUE;
+        int secondMax = Integer.MIN_VALUE;
+        int small = Integer.MAX_VALUE;
+        // 1 4 2 5
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] > max) {
+                secondMax = max;
+
+                max = nums[i];
+
+            } else if (nums[i] > secondMax) {
+                secondMax = nums[i];
+            }
+            if (nums[i] < small) {
+                small = nums[i];
+            }
+        }
+
+        return max + secondMax - small;
+    }
+}
