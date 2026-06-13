@@ -1,5 +1,5 @@
 //LEETCODE - 121  - BEST TIME TO BUY AND SELL STOCK
- 
+
 // You are given an array prices where prices[i] is the price of a given stock on the ith day.
 
 // You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.
@@ -23,6 +23,39 @@
 // 1 <= prices.length <= 105
 // 0 <= prices[i] <= 104
 
-public class Leetcode_121_Best_Time_To_Buy_Sell_Stock {
+import java.util.*;
 
+public class Leetcode_121_Best_Time_To_Buy_Sell_Stock {
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("How many numbers do u want in array : ");
+        int n = sc.nextInt();
+        int prices[] = new int[n];
+        for (int i = 0; i < n; i++) {
+            prices[i] = sc.nextInt();
+        }
+        int res = solution(prices);
+        System.out.println("Output : " + res);
+    }
+
+    public static int solution(int prices[]) {
+
+        int max = Integer.MIN_VALUE;
+        int buy;
+        int res = 0;
+        for (int i = 0; i < prices.length; i++) {
+            buy = prices[i];
+            for (int j = i + 1; j < prices.length; j++) {
+
+                if (buy < prices[j]) {
+
+                    res = Math.max(res, prices[j] - buy); // 4
+                    System.out.println("res " + res);
+                }
+            }
+
+        }
+        return res;
+
+    }
 }
