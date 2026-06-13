@@ -40,22 +40,38 @@ public class Leetcode_121_Best_Time_To_Buy_Sell_Stock {
 
     public static int solution(int prices[]) {
 
-        int max = Integer.MIN_VALUE;
-        int buy;
-        int res = 0;
-        for (int i = 0; i < prices.length; i++) {
-            buy = prices[i];
-            for (int j = i + 1; j < prices.length; j++) {
+        //BRUTE-FORCE SOLUTION - 0(N^2)
+        // int max = Integer.MIN_VALUE;
+        // int buy;
+        // int res = 0;
+        // for (int i = 0; i < prices.length; i++) {
+        //     buy = prices[i];
+        //     // [7,1,5,3,6,4] op-5 
+        //     for (int j = i + 1; j < prices.length; j++) {
 
-                if (buy < prices[j]) {
+        //         if (buy < prices[j]) {
 
-                    res = Math.max(res, prices[j] - buy); // 4
-                    System.out.println("res " + res);
-                }
-            }
+        //             res = Math.max(res, prices[j] - buy); // 4
+        //             System.out.println("res " + res);
+        //         }
+        //     }
+
+        // }
+        // return res;
+
+        //OPTIMIZED SOLUTION - 0(N)  - just keep in mind we from current index find left side min value where will buy and current index where we will sell it 
+        int min = Integer.MAX_VALUE; 
+        int Maxprofit = 0 ; 
+        for(int i= 0 ; i<prices.length ; i++)
+        {
+            //7 1 5 3 4 6 
+            min = Math.min(min, prices[i]);
+            int profit = prices[i] - min; 
+            Maxprofit = Math.max(Maxprofit, profit);
+
+
 
         }
-        return res;
-
+        return Maxprofit;
     }
 }
