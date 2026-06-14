@@ -50,19 +50,35 @@ public class Leetcode_455_Assign_Cookie {
     }
 
     public static int solution(int g[], int s[]) {
-        // Brute-force approach O(N^2)
-        int count = 0;
-        Arrays.sort(g);
-        Arrays.sort(s);
-        // 1 2 3 || 3 9
-        for (int i = 0; i < g.length; i++) {
-            for (int j = 0; j < s.length; j++)
-                if (s[j] >= g[i]) {
-                    count++;
-                    s[j] = Integer.MIN_VALUE;
-                    break;
+        // // Brute-force approach O(N^2)
+        // int count = 0;
+        // Arrays.sort(g);
+        // Arrays.sort(s);
+        // // 1 2 3 || 3 9
+        // for (int i = 0; i < g.length; i++) {
+        //     for (int j = 0; j < s.length; j++)
+        //         if (s[j] >= g[i]) {
+        //             count++;
+        //             s[j] = Integer.MIN_VALUE;
+        //             break;
+        //         }
+        // }
+        // return count;
+
+        //Optimized solution 
+         Arrays.sort(g);
+         Arrays.sort(s);
+         int child = 0 , cookie = 0 ; 
+         while( child < g.length && cookie < s.length )
+            {
+                // 1 2 3 || 1 3 
+                if( g[child] <= s[cookie])
+                {
+                    child++;
                 }
-        }
-        return count;
+                cookie++;
+            } 
+
+        return child ; 
     }
 }
