@@ -25,3 +25,40 @@
 
 // 1 <= nums.length <= 100
 // 1 <= nums[i] <= 100
+import java.util.*;
+
+public class Leetcode_1748_Sum_Of_Unique_Elements {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int nums[], n;
+        System.out.print("How many numbers do u want in nums array : ");
+        n = sc.nextInt();
+        nums = new int[n];
+        for (int i = 0; i < n; i++) {
+            nums[i] = sc.nextInt();
+        }
+        int res = solution(nums);
+        System.out.println("Output : " + res);
+    }
+
+    public static int solution(int nums[]) {
+        int freq[] = new int[101];
+
+        // Count frequency of every number
+        for (int i = 0; i < nums.length; i++) {
+            freq[nums[i]]++;
+        }
+
+        int sum = 0;
+
+        // Add only unique numbers
+        for (int i = 0; i < nums.length; i++) {
+            if (freq[nums[i]] == 1) {
+                sum += nums[i];
+            }
+        }
+
+        return sum;
+
+    }
+}
