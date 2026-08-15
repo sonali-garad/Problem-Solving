@@ -57,12 +57,12 @@ public class Leetcode_611_Vallid_Triangle {
         // OPTIMAL APPROACH - O(N)
         int count = 0;
         Arrays.sort(nums);
-        for (int i = 0; i < nums.length; i++) {
+        for (int i = 2 ; i < nums.length; i++) {
             // 2 3 4 4
-            int left = i + 1;
-            int right = nums.length - 1;
+            int left = 0 ;
+            int right = i-1;
             while (left < right) {
-                if (nums[i] + nums[left] >= nums[right]) {
+                if (nums[left] + nums[right] >= nums[i]) {
                     count += right - left;
                     right--;
 
