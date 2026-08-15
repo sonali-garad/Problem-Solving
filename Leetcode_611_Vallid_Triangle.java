@@ -38,20 +38,40 @@ public class Leetcode_611_Vallid_Triangle {
 
     public static int solution(int nums[]) {
 
-        //BRUTE-FORCE- O(N^2)
-        // 2 2 3 4 -- || 2 2 > 4 || 2 2 > 3 || 2 3 > 5
-        Arrays.sort(nums);
+        // //BRUTE-FORCE- O(N^2)
+        // // 2 2 3 4 -- || 2 2 > 4 || 2 2 > 3 || 2 3 > 5
+        // Arrays.sort(nums);
+        // int count = 0;
+        // for (int i = 0; i < nums.length; i++) {
+        // for (int j = i + 1; j < nums.length; j++) {
+        // for (int k = j + 1; k < nums.length; k++) {
+        // if (nums[i] + nums[j] > nums[k]) {
+        // count++;
+        // }
+        // }
+        // }
+
+        // }
+        // return count;
+
+        // OPTIMAL APPROACH - O(N)
         int count = 0;
+        Arrays.sort(nums);
         for (int i = 0; i < nums.length; i++) {
-            for (int j = i + 1; j < nums.length; j++) {
-                for (int k = j + 1; k < nums.length; k++) {
-                    if (nums[i] + nums[j] > nums[k]) {
-                        count++;
-                    }
+            // 2 3 4 4
+            int left = i + 1;
+            int right = nums.length - 1;
+            while (left < right) {
+                if (nums[i] + nums[left] >= nums[right]) {
+                    count += right - left;
+                    right--;
+
+                } else {
+                    left++;
                 }
             }
-
         }
+
         return count;
     }
 }
