@@ -62,7 +62,7 @@ public class Leetcode_611_Vallid_Triangle {
             int left = 0 ;
             int right = i-1;
             while (left < right) {
-                if (nums[left] + nums[right] >= nums[i]) {
+                if (nums[left] + nums[right] > nums[i]) {
                     count += right - left;
                     right--;
 
